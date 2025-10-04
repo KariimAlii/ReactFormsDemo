@@ -2,8 +2,11 @@
     function handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target)
+        //! Problem : Group Values are lost
+        const acqusitionChannel = formData.getAll('acquisition'); //! checkboxes having name = "acquisition"
         const enteredEmail = formData.get("email")
         const formValues = Object.fromEntries(formData.entries());
+        formValues.acquisition = acqusitionChannel;
         console.log(formValues);
         console.log(formValues.email);
     }
