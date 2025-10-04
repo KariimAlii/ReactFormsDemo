@@ -1,6 +1,6 @@
 ﻿export default function Login() {
     function HandleSubmit() {
-
+        console.log("SUBMITTED")
     }
 
     return (
@@ -22,7 +22,7 @@
 
             <p className="form-actions">
                 <button className="button button-flat">Reset</button>
-                <button className="button" onClick={HandleSubmit}>Login</button>
+                <button type="button" className="button" onClick={HandleSubmit}>Login</button>
             </p>
         </form>
     );
