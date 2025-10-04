@@ -5,6 +5,7 @@
 
             <div className="control-row">
                 <div className="control no-margin">
+                    { /* ! (HtmlFor) is the jsx alternative to native html (for) attribute */}
                     <label htmlFor="email">Email</label>
                     <input id="email" type="email" name="email" />
                 </div>
