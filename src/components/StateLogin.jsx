@@ -12,6 +12,7 @@ export default function Login() {
     })
 
     //! Validating on Input Lost Focus (Blur)
+    //! It might last too long ==> Update didEdit on every keystroke
     const isEmailInvalid = didEdit.email && !enteredValues.email.includes('@gmail');
 
     function handleSubmit(event) {
@@ -30,6 +31,11 @@ export default function Login() {
             ...prevValues,
             [identifier]: value
         }));
+        //! Update didEdit on every keystroke
+        setDidEdit(prevEdit => ({
+            ...prevEdit,
+            [identifier]: false
+        }))
     }
 
     function handleInputBlur(identifier) {
