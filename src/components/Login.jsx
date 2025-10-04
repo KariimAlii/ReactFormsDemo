@@ -16,6 +16,8 @@ export default function Login() {
             setEmailIsInvalid(true)
             return;
         }
+        //! Unshow the message if email is valid
+        setEmailIsInvalid(false)
         //! If Email is invalid => we need to prevent sending the http request
         console.log("Sending Http Request")
 
