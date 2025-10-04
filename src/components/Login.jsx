@@ -1,10 +1,24 @@
-﻿import {useRef} from "react";
+﻿import {useRef, useState} from "react";
 
 export default function Login() {
+    //! we need to use state because we need to update the ui if we found out that
+    //! one of the form values is invalid
+    const [emailIsInvalid, setEmailIsInvalid] = useState(false)
+
     const email = useRef();
     const password = useRef();
     function handleSubmit(event) {
         event.preventDefault();
+
+        //! Validate Form on Submission
+        const isEmailInvalid = !email.current.value.includes('@gmail');
+        if(isEmailInvalid) {
+            setEmailIsInvalid(true)
+            return;
+        }
+        //! If Email is invalid => we need to prevent sending the http request
+        console.log("Sending Http Request")
+
         console.log("SUBMITTED")
         //! email.current => input DOM element
         console.log("Entered Email:", email.current.value);
@@ -32,6 +46,9 @@ export default function Login() {
                         name="email"
                         ref={email}
                     />
+                    <div className="control-error">
+                        {emailIsInvalid && <p>Please enter a valid email!</p>}
+                    </div>
                 </div>
 
                 <div className="control no-margin">
