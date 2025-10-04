@@ -10,6 +10,12 @@ export default function Login() {
         console.log("Entered Email:", email.current.value);
         //! password.current => input DOM element
         console.log("Entered Password:", password.current.value);
+
+        //! The Problem with Refs => Resetting form values needs manipulating the dom directly using refs
+        //! It works but not recommended
+        //! 2nd Problem : You still need to deal with multiple Refs
+        email.current.value = '';
+        password.current.value = '';
     }
 
     return (
