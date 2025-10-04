@@ -6,7 +6,7 @@ export default function Login() {
         password: ''
     });
 
-    const isEmailInvalid = !enteredValues.email.includes('@gmail');
+    const isEmailInvalid = enteredValues.email !== '' && !enteredValues.email.includes('@gmail');
 
     function handleSubmit(event) {
         event.preventDefault();
