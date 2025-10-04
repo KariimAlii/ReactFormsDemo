@@ -1,6 +1,11 @@
 ﻿export default function Signup() {
     function handleSubmit(event) {
         event.preventDefault();
+        const formData = new FormData(event.target)
+        const enteredEmail = formData.get("email")
+        const formValues = Object.fromEntries(formData.entries());
+        console.log(formValues);
+        console.log(formValues.email);
     }
 
     return (
