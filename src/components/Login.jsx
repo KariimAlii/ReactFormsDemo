@@ -1,4 +1,8 @@
 ﻿export default function Login() {
+    function HandleSubmit() {
+
+    }
+
     return (
         <form>
             <h2>Login</h2>
@@ -18,7 +22,7 @@
 
             <p className="form-actions">
                 <button className="button button-flat">Reset</button>
-                <button className="button">Login</button>
+                <button className="button" onClick={HandleSubmit}>Login</button>
             </p>
         </form>
     );
