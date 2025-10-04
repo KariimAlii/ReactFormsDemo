@@ -6,8 +6,13 @@ export default function Login() {
         password: ''
     });
 
-    //! Validating ok Keystroke is too early
-    const isEmailInvalid = enteredValues.email !== '' && !enteredValues.email.includes('@gmail');
+    const [didEdit, setDidEdit] = useState({
+        email: false,
+        password: false
+    })
+
+    //! Validating on Input Lost Focus (Blur)
+    const isEmailInvalid = didEdit.email && !enteredValues.email.includes('@gmail');
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -27,6 +32,13 @@ export default function Login() {
         }));
     }
 
+    function handleInputBlur(identifier) {
+        setDidEdit(prevEdit => ({
+            ...prevEdit,
+            [identifier]: true
+        }))
+    }
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -40,6 +52,7 @@ export default function Login() {
                         id="email"
                         type="email"
                         name="email"
+                        onBlur={() => handleInputBlur('email')}
                         onChange={(event) => handleInputChange('email', event.target.value)}
                         value={enteredValues.email}
                     />
