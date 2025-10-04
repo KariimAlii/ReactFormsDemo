@@ -1,22 +1,22 @@
 ﻿import {useState} from "react";
 
 export default function Login() {
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
+    const [enteredValues, setEnteredValues] = useState({
+        email: '',
+        password: ''
+    });
 
     function handleSubmit(event) {
         event.preventDefault();
         console.log("SUBMITTED")
-        console.log("USer Email:", enteredEmail);
-        console.log("USer Password:", enteredPassword);
+        console.log("Form Values:", enteredValues);
     }
 
-    function handleEmailChange(event) {
-        setEnteredEmail(event.target.value);
-    }
-
-    function handlePasswordChange(event) {
-        setEnteredPassword(event.target.value);
+    function handleInputChange(identifier, value) {
+        setEnteredValues(prevValues => ({
+            ...prevValues,
+            [identifier]: value
+        }));
     }
 
 
@@ -28,12 +28,24 @@ export default function Login() {
                 <div className="control no-margin">
                     { /* ! (HtmlFor) is the jsx alternative to native html (for) attribute */}
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email" name="email" onChange={handleEmailChange} value={enteredEmail} />
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        onChange={(event) => handleInputChange('email', event.target.value)}
+                        value={enteredValues.email}
+                    />
                 </div>
 
                 <div className="control no-margin">
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="password" name="password" onChange={handlePasswordChange} value={enteredPassword} />
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        onChange={(event) => handleInputChange('password', event.target.value)}
+                        value={enteredValues.password}
+                    />
                 </div>
             </div>
 
