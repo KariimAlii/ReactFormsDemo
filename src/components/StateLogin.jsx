@@ -6,6 +6,7 @@ export default function Login() {
         password: ''
     });
 
+    //! Validating ok Keystroke is too early
     const isEmailInvalid = enteredValues.email !== '' && !enteredValues.email.includes('@gmail');
 
     function handleSubmit(event) {
