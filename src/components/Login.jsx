@@ -1,8 +1,24 @@
-﻿export default function Login() {
+﻿import {useState} from "react";
+
+export default function Login() {
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
+
     function handleSubmit(event) {
         event.preventDefault();
         console.log("SUBMITTED")
+        console.log("USer Email:", enteredEmail);
+        console.log("USer Password:", enteredPassword);
     }
+
+    function handleEmailChange(event) {
+        setEnteredEmail(event.target.value);
+    }
+
+    function handlePasswordChange(event) {
+        setEnteredPassword(event.target.value);
+    }
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -12,12 +28,12 @@
                 <div className="control no-margin">
                     { /* ! (HtmlFor) is the jsx alternative to native html (for) attribute */}
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email" name="email" />
+                    <input id="email" type="email" name="email" onChange={handleEmailChange} value={enteredEmail} />
                 </div>
 
                 <div className="control no-margin">
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="password" name="password" />
+                    <input id="password" type="password" name="password" onChange={handlePasswordChange} value={enteredPassword} />
                 </div>
             </div>
 
