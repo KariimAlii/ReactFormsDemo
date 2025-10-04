@@ -10,6 +10,11 @@ export default function Login() {
         event.preventDefault();
         console.log("SUBMITTED")
         console.log("Form Values:", enteredValues);
+        //! You can reset the form
+        setEnteredValues({
+            email: '',
+            password: ''
+        })
     }
 
     function handleInputChange(identifier, value) {

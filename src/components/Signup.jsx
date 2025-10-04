@@ -9,6 +9,9 @@
         formValues.acquisition = acqusitionChannel;
         console.log(formValues);
         console.log(formValues.email);
+
+        //! Reset the form (Also DOM Manipulation)
+        event.target.reset();
     }
 
     return (
