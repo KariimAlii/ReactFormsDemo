@@ -1,4 +1,6 @@
-﻿export default function Signup() {
+﻿//! Built-in Html Forms Validation
+//! https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+export default function Signup() {
     function handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target)
@@ -21,13 +23,13 @@
 
             <div className="control">
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" />
+                <input id="email" type="email" name="email" required />
             </div>
 
             <div className="control-row">
                 <div className="control">
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="password" name="password" />
+                    <input id="password" type="password" name="password" required minLength={6} maxLength={12} />
                 </div>
 
                 <div className="control">
@@ -36,6 +38,9 @@
                         id="confirm-password"
                         type="password"
                         name="confirm-password"
+                        required
+                        minLength={6}
+                        maxLength={12}
                     />
                 </div>
             </div>
@@ -56,7 +61,7 @@
 
             <div className="control">
                 <label htmlFor="phone">What best describes your role?</label>
-                <select id="role" name="role">
+                <select id="role" name="role" required>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                     <option value="employee">Employee</option>
@@ -95,7 +100,7 @@
 
             <div className="control">
                 <label htmlFor="terms-and-conditions">
-                    <input type="checkbox" id="terms-and-conditions" name="terms" />I
+                    <input type="checkbox" id="terms-and-conditions" name="terms" required/>I
                     agree to the terms and conditions
                 </label>
             </div>
