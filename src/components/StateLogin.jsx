@@ -71,7 +71,7 @@ export default function Login() {
                     onBlur={() => handleInputBlur('password')}
                     onChange={(event) => handleInputChange('password', event.target.value)}
                     value={enteredValues.password}
-                    error={isEmailInvalid && 'Please enter a valid password'}
+                    error={isPasswordInvalid && 'Please enter a valid password'}
                 />
             </div>
 
