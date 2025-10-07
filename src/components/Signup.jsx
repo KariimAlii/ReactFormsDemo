@@ -1,6 +1,9 @@
 ﻿//! Built-in Html Forms Validation
 //! https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+import {useState} from "react";
+
 export default function Signup() {
+    const [passwordsAreNotEqual, setPasswordsAreNotEqual] = useState()
     function handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target)
@@ -9,8 +12,16 @@ export default function Signup() {
         const enteredEmail = formData.get("email")
         const formValues = Object.fromEntries(formData.entries());
         formValues.acquisition = acqusitionChannel;
+
+        if(formValues.password !== formValues.confirmPassword) {
+            setPasswordsAreNotEqual(true);
+            console.log("Cannot submit the form!")
+            return;
+        }
+        console.log("Form submitted successfully!")
         console.log(formValues);
         console.log(formValues.email);
+
 
         //! Reset the form (Also DOM Manipulation)
         event.target.reset();
@@ -33,15 +44,18 @@ export default function Signup() {
                 </div>
 
                 <div className="control">
-                    <label htmlFor="confirm-password">Confirm Password</label>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
-                        id="confirm-password"
+                        id="confirmPassword"
                         type="password"
-                        name="confirm-password"
+                        name="confirmPassword"
                         required
                         minLength={6}
                         maxLength={12}
                     />
+                    <div className="control-error">
+                        {passwordsAreNotEqual && <p>Passwords don't match</p>}
+                    </div>
                 </div>
             </div>
 
