@@ -15,7 +15,7 @@ export default function Login() {
     //! Validating on Input Lost Focus (Blur)
     //! It might last too long ==> Update didEdit on every keystroke
     const isEmailInvalid = didEdit.email && !enteredValues.email.includes('@gmail');
-
+    const isPasswordInvalid = didEdit.password && enteredValues.password.trim().length < 6;
     function handleSubmit(event) {
         event.preventDefault();
         console.log("SUBMITTED")
@@ -60,6 +60,7 @@ export default function Login() {
                     onBlur={() => handleInputBlur('email')}
                     onChange={(event) => handleInputChange('email', event.target.value)}
                     value={enteredValues.email}
+                    error={isEmailInvalid && 'Please enter a valid email'}
                 />
 
                 <Input
@@ -70,6 +71,7 @@ export default function Login() {
                     onBlur={() => handleInputBlur('password')}
                     onChange={(event) => handleInputChange('password', event.target.value)}
                     value={enteredValues.password}
+                    error={isEmailInvalid && 'Please enter a valid password'}
                 />
             </div>
 
