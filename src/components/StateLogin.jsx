@@ -2,6 +2,9 @@
 import {hasMinLength_V2, isEmail, isNotEmpty} from "../util/validation.js";
 import {useInput} from "../hooks/useInput.js";
 
+//! You can use third party libraries for form handline
+//! https://react-hook-form.com/
+//! https://formik.org/
 export default function Login() {
 
     const {
