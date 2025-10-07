@@ -1,17 +1,15 @@
 ﻿import {useState} from "react";
 import Input from "./Input.jsx";
 import {hasMinLength, hasMinLength_V2, isEmail, isNotEmpty, validate} from "../util/validation.js";
+import {useInput} from "../hooks/useInput.js";
 
 export default function Login() {
-    const [enteredValues, setEnteredValues] = useState({
-        email: '',
-        password: ''
-    });
 
-    const [didEdit, setDidEdit] = useState({
-        email: false,
-        password: false
-    })
+    const {
+        value: emailValue,
+        handleInputChange: handleEmailChange,
+        handleInputBlur: handleEmailBlur,
+    } = useInput('');
 
     //! Validating on Input Lost Focus (Blur)
     //! It might last too long ==> Update didEdit on every keystroke
@@ -30,24 +28,7 @@ export default function Login() {
         })
     }
 
-    function handleInputChange(identifier, value) {
-        setEnteredValues(prevValues => ({
-            ...prevValues,
-            [identifier]: value
-        }));
-        //! Update didEdit on every keystroke
-        setDidEdit(prevEdit => ({
-            ...prevEdit,
-            [identifier]: false
-        }))
-    }
 
-    function handleInputBlur(identifier) {
-        setDidEdit(prevEdit => ({
-            ...prevEdit,
-            [identifier]: true
-        }))
-    }
 
 
     return (
@@ -60,9 +41,9 @@ export default function Login() {
                     id="email"
                     type="email"
                     name="email"
-                    onBlur={() => handleInputBlur('email')}
-                    onChange={(event) => handleInputChange('email', event.target.value)}
-                    value={enteredValues.email}
+                    onBlur={handleEmailBlur}
+                    onChange={handleEmailChange}
+                    value={emailValue}
                     error={isEmailInvalid && 'Please enter a valid email'}
                 />
 
