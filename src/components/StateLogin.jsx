@@ -9,7 +9,22 @@ export default function Login() {
         value: emailValue,
         handleInputChange: handleEmailChange,
         handleInputBlur: handleEmailBlur,
-    } = useInput('');
+        hasError: emailHasError,
+    } = useInput(
+        '',
+        [isEmail, isNotEmpty]
+    );
+
+    const {
+        value: passwordValue,
+        handleInputChange: handlePasswordChange,
+        handleInputBlur: handlePasswordBlur,
+        hasError: passwordHasError,
+    } = useInput(
+        '',
+        [hasMinLength_V2(6)]
+    );
+
 
     //! Validating on Input Lost Focus (Blur)
     //! It might last too long ==> Update didEdit on every keystroke
@@ -44,7 +59,7 @@ export default function Login() {
                     onBlur={handleEmailBlur}
                     onChange={handleEmailChange}
                     value={emailValue}
-                    error={isEmailInvalid && 'Please enter a valid email'}
+                    error={emailHasError && 'Please enter a valid email'}
                 />
 
                 <Input
@@ -52,10 +67,10 @@ export default function Login() {
                     id="password"
                     type="password"
                     name="password"
-                    onBlur={() => handleInputBlur('password')}
-                    onChange={(event) => handleInputChange('password', event.target.value)}
-                    value={enteredValues.password}
-                    error={isPasswordInvalid && 'Please enter a valid password'}
+                    onBlur={handlePasswordBlur}
+                    onChange={handlePasswordChange}
+                    value={passwordValue}
+                    error={passwordHasError && 'Please enter a valid password'}
                 />
             </div>
 

@@ -2,12 +2,15 @@
 
 import {useState} from "react";
 
-export function useInput(defaultValue) {
+export function useInput(defaultValue, validationFns) {
     const [enteredValue, setEnteredValue] = useState(defaultValue);
 
     const [didEdit, setDidEdit] = useState(false);
 
-    const valueIsValid
+    const valueIsValid = validationFns.every(
+        fn => fn(enteredValue)
+    );
+
     function handleInputChange(event) {
         setEnteredValue(event.target.value);
         setDidEdit(false)
@@ -21,5 +24,6 @@ export function useInput(defaultValue) {
         value: enteredValue,
         handleInputChange,
         handleInputBlur,
+        hasError: didEdit && !valueIsValid
     };
 }
