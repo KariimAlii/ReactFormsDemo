@@ -34,13 +34,14 @@ export default function Login() {
     const isPasswordInvalid2 = didEdit.password && !validate(enteredValues.password, hasMinLength_V2(6));
     function handleSubmit(event) {
         event.preventDefault();
+
+        if(emailHasError || passwordHasError) {
+            console.log("Invalid Form Values")
+            return;
+        }
+
         console.log("SUBMITTED")
-        console.log("Form Values:", enteredValues);
-        //! You can reset the form
-        setEnteredValues({
-            email: '',
-            password: ''
-        })
+        console.log(emailValue, passwordValue);
     }
 
 
