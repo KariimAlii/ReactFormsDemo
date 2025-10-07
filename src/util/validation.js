@@ -13,3 +13,9 @@ export function hasMinLength(value, minLength) {
 export function isEqualsToOtherValue(value, otherValue) {
     return value === otherValue;
 }
+
+export const validate = (value, ...fns) => fns.every(fn => fn(value));
+
+export function hasMinLength_V2(minLength) {
+    return value => value.length >= minLength;
+}

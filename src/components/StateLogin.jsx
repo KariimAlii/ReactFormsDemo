@@ -1,5 +1,6 @@
 ﻿import {useState} from "react";
 import Input from "./Input.jsx";
+import {hasMinLength, hasMinLength_V2, isEmail, isNotEmpty, validate} from "../util/validation.js";
 
 export default function Login() {
     const [enteredValues, setEnteredValues] = useState({
@@ -14,8 +15,10 @@ export default function Login() {
 
     //! Validating on Input Lost Focus (Blur)
     //! It might last too long ==> Update didEdit on every keystroke
-    const isEmailInvalid = didEdit.email && !enteredValues.email.includes('@gmail');
-    const isPasswordInvalid = didEdit.password && enteredValues.password.trim().length < 6;
+    const isEmailInvalid = didEdit.email && !isEmail(enteredValues.email) && !isNotEmpty(enteredValues.email);
+    const isEmailInvalid2 = didEdit.email && !validate(enteredValues.email, isEmail, isNotEmpty);
+    const isPasswordInvalid = didEdit.password && !hasMinLength(enteredValues.password, 6);
+    const isPasswordInvalid2 = didEdit.password && !validate(enteredValues.password, hasMinLength_V2(6));
     function handleSubmit(event) {
         event.preventDefault();
         console.log("SUBMITTED")
