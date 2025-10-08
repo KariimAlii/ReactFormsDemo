@@ -1,4 +1,6 @@
-﻿export default function Signup() {
+﻿import {hasMinLength, hasMinLength_V2, isEmail, isEqualsToOtherValue, isNotEmpty} from "../util/validation.js";
+
+export default function Signup() {
     //! Form Actions
     //! available in React 19 or higher version
     //! Form Actions are used to handle form submission
@@ -13,6 +15,31 @@
         const terms = formData.get('terms');
         const acqusitionChannel = formData.getAll('acquisition');
 
+        let errors = [];
+
+        if(!isEmail(email)) {
+            errors.push('Invalid email address');
+        }
+
+        if(!isNotEmpty(password) || !hasMinLength(password ,6)) {
+            errors.push('You must provide password with at least 6 characters');
+        }
+
+        if(isEqualsToOtherValue(password, confirmPassword)) {
+            errors.push('Passwords do not match');
+        }
+
+        if(!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
+            errors.push('First name & Last name are required');
+        }
+
+        if(!terms) {
+            errors.push("You must agree to terms and conditions")
+        }
+
+        if(acqusitionChannel.length === 0) {
+            errors.push('Please select at least one acquisition channel')
+        }
     }
     return (
         <form action={signupAction}>
