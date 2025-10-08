@@ -1,9 +1,14 @@
 ﻿export default function Signup() {
-    function handleSubmit(event) {
-        event.preventDefault()
+    //! Form Actions
+    //! available in React 19 or higher version
+    //! Form Actions are used to handle form submission
+    function handleSubmit(formData) {
+        //! formData.get(key) , where key is the (name) attribute used for the input
+        const enteredEmail = formData.get('email');
+        console.log(enteredEmail);
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form action={handleSubmit}>
             <h2>Welcome on board!</h2>
             <p>We just need a little bit of data from you to get you started 🚀</p>
 
