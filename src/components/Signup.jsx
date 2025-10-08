@@ -1,61 +1,27 @@
-﻿//! Built-in Html Forms Validation
-//! https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
-import {useState} from "react";
-
-export default function Signup() {
-    const [passwordsAreNotEqual, setPasswordsAreNotEqual] = useState()
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target)
-        //! Problem : Group Values are lost
-        const acqusitionChannel = formData.getAll('acquisition'); //! checkboxes having name = "acquisition"
-        const enteredEmail = formData.get("email")
-        const formValues = Object.fromEntries(formData.entries());
-        formValues.acquisition = acqusitionChannel;
-
-        if(formValues.password !== formValues.confirmPassword) {
-            setPasswordsAreNotEqual(true);
-            console.log("Cannot submit the form!")
-            return;
-        }
-        console.log("Form submitted successfully!")
-        console.log(formValues);
-        console.log(formValues.email);
-
-
-        //! Reset the form (Also DOM Manipulation)
-        event.target.reset();
-    }
-
+﻿export default function Signup() {
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <h2>Welcome on board!</h2>
             <p>We just need a little bit of data from you to get you started 🚀</p>
 
             <div className="control">
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" required />
+                <input id="email" type="email" name="email" />
             </div>
 
             <div className="control-row">
                 <div className="control">
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="password" name="password" required minLength={6} maxLength={12} />
+                    <input id="password" type="password" name="password" />
                 </div>
 
                 <div className="control">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <label htmlFor="confirm-password">Confirm Password</label>
                     <input
-                        id="confirmPassword"
+                        id="confirm-password"
                         type="password"
-                        name="confirmPassword"
-                        required
-                        minLength={6}
-                        maxLength={12}
+                        name="confirm-password"
                     />
-                    <div className="control-error">
-                        {passwordsAreNotEqual && <p>Passwords don't match</p>}
-                    </div>
                 </div>
             </div>
 
@@ -75,7 +41,7 @@ export default function Signup() {
 
             <div className="control">
                 <label htmlFor="phone">What best describes your role?</label>
-                <select id="role" name="role" required>
+                <select id="role" name="role">
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                     <option value="employee">Employee</option>
@@ -114,7 +80,7 @@ export default function Signup() {
 
             <div className="control">
                 <label htmlFor="terms-and-conditions">
-                    <input type="checkbox" id="terms-and-conditions" name="terms" required/>I
+                    <input type="checkbox" id="terms-and-conditions" name="terms" />I
                     agree to the terms and conditions
                 </label>
             </div>
@@ -123,9 +89,7 @@ export default function Signup() {
                 <button type="reset" className="button button-flat">
                     Reset
                 </button>
-                <button type="submit" className="button">
-                    Sign up
-                </button>
+                <button className="button">Sign up</button>
             </p>
         </form>
     );
