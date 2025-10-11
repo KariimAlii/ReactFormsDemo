@@ -1,4 +1,5 @@
-﻿import {hasMinLength, hasMinLength_V2, isEmail, isEqualsToOtherValue, isNotEmpty} from "../util/validation.js";
+﻿import {hasMinLength, isEmail, isEqualsToOtherValue, isNotEmpty} from "../util/validation.js";
+import {useActionState} from "react";
 
 export default function Signup() {
     //! Form Actions
@@ -40,7 +41,18 @@ export default function Signup() {
         if(acqusitionChannel.length === 0) {
             errors.push('Please select at least one acquisition channel')
         }
+
+        if(errors.length > 0) {
+            return { errors }
+        }
+
+        return { errors : null }
     }
+
+    //! use the (useActionState) hook after defining the (signupAction) because you need to pass it as a parameter
+    //! you need to provide an initialState as the second parameter
+    useActionState(signupAction, { errors : null });
+
     return (
         <form action={signupAction}>
             <h2>Welcome on board!</h2>
