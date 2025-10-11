@@ -116,6 +116,7 @@ export default function Signup() {
 
             <div className="control">
                 <label htmlFor="phone">What best describes your role?</label>
+                {/* ! Select loses its value , it is a bug in react action forms */}
                 <select id="role" name="role" defaultValue={formState.formValues?.role}>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
@@ -181,6 +182,7 @@ export default function Signup() {
                 </ul>
             )}
             <p className="form-actions">
+                {/* ! reset now resets to the (defaultValue) or (defaultChecked) */}
                 <button type="reset" className="button button-flat">
                     Reset
                 </button>
