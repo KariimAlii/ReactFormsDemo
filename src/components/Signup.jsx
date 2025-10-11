@@ -6,7 +6,7 @@ export default function Signup() {
     //! available in React 19 or higher version
     //! Form Actions are used to handle form submission
     //!
-    //! Note that now on each submit react resets the form
+    //! Note that now on each submit react resets the form --> use (defaultValue) attribute
     function signupAction(prevFormState, formData) {
         //! formData.get(key) , where key is the (name) attribute used for the input
         const email = formData.get('email');
@@ -45,7 +45,19 @@ export default function Signup() {
         }
 
         if(errors.length > 0) {
-            return { errors }
+            return {
+                errors,
+                formValues: {
+                    email,
+                    password,
+                    confirmPassword,
+                    firstName,
+                    lastName,
+                    role,
+                    acqusitionChannel,
+                    terms
+                }
+            }
         }
 
         return { errors : null }
@@ -68,13 +80,13 @@ export default function Signup() {
 
             <div className="control">
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" />
+                <input id="email" type="email" name="email" defaultValue={formState.formValues?.email} />
             </div>
 
             <div className="control-row">
                 <div className="control">
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="password" name="password" />
+                    <input id="password" type="password" name="password" defaultValue={formState.formValues?.password} />
                 </div>
 
                 <div className="control">
@@ -83,6 +95,7 @@ export default function Signup() {
                         id="confirm-password"
                         type="password"
                         name="confirm-password"
+                        defaultValue={formState.formValues?.confirmPassword}
                     />
                 </div>
             </div>
