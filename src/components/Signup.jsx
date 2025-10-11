@@ -105,18 +105,18 @@ export default function Signup() {
             <div className="control-row">
                 <div className="control">
                     <label htmlFor="first-name">First Name</label>
-                    <input type="text" id="first-name" name="first-name" />
+                    <input type="text" id="first-name" name="first-name" defaultValue={formState.formValues?.firstName}/>
                 </div>
 
                 <div className="control">
                     <label htmlFor="last-name">Last Name</label>
-                    <input type="text" id="last-name" name="last-name" />
+                    <input type="text" id="last-name" name="last-name" defaultValue={formState.formValues?.lastName} />
                 </div>
             </div>
 
             <div className="control">
                 <label htmlFor="phone">What best describes your role?</label>
-                <select id="role" name="role">
+                <select id="role" name="role" defaultValue={formState.formValues?.role}>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                     <option value="employee">Employee</option>
@@ -133,6 +133,7 @@ export default function Signup() {
                         id="google"
                         name="acquisition"
                         value="google"
+                        defaultChecked={formState.formValues?.acqusitionChannel.includes('google')}
                     />
                     <label htmlFor="google">Google</label>
                 </div>
@@ -143,20 +144,32 @@ export default function Signup() {
                         id="friend"
                         name="acquisition"
                         value="friend"
+                        defaultChecked={formState.formValues?.acqusitionChannel.includes('friend')}
                     />
                     <label htmlFor="friend">Referred by friend</label>
                 </div>
 
                 <div className="control">
-                    <input type="checkbox" id="other" name="acquisition" value="other" />
+                    <input
+                        type="checkbox"
+                        id="other"
+                        name="acquisition"
+                        value="other"
+                        defaultChecked={formState.formValues?.acqusitionChannel.includes('other')}
+                    />
                     <label htmlFor="other">Other</label>
                 </div>
             </fieldset>
 
             <div className="control">
                 <label htmlFor="terms-and-conditions">
-                    <input type="checkbox" id="terms-and-conditions" name="terms" />I
-                    agree to the terms and conditions
+                    <input
+                        type="checkbox"
+                        id="terms-and-conditions"
+                        name="terms"
+                        defaultChecked={formState.formValues?.terms}
+                    />
+                    I agree to the terms and conditions
                 </label>
             </div>
 
