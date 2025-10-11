@@ -5,7 +5,9 @@ export default function Signup() {
     //! Form Actions
     //! available in React 19 or higher version
     //! Form Actions are used to handle form submission
-    function signupAction(formData) {
+    //!
+    //! Note that now on each submit react resets the form
+    function signupAction(prevFormState, formData) {
         //! formData.get(key) , where key is the (name) attribute used for the input
         const email = formData.get('email');
         const password = formData.get('password');
@@ -146,7 +148,7 @@ export default function Signup() {
             </div>
 
             {formState.errors && (
-                <ul className="erros">
+                <ul className="error">
                     {formState.errors.map((error, i) => (
                         <li key={i}>{error}</li>
                     ))}
