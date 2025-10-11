@@ -57,10 +57,10 @@ export default function Signup() {
     //! 2nd : an updated formAction, a new function that wraps the signupAction and listens to its invocation
     //!       we can say it is our form action but with extra features and react is aware of it
     //! 3rd : pending : true or false, depending on the form is submitted or not
-    const [formState, formAction, pending] = useActionState(signupAction, { errors : null });
+    const [formState, formAction] = useActionState(signupAction, { errors : null });
 
     return (
-        <form action={signupAction}>
+        <form action={formAction}>
             <h2>Welcome on board!</h2>
             <p>We just need a little bit of data from you to get you started 🚀</p>
 
@@ -145,6 +145,13 @@ export default function Signup() {
                 </label>
             </div>
 
+            {formState.errors && (
+                <ul className="erros">
+                    {formState.errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul>
+            )}
             <p className="form-actions">
                 <button type="reset" className="button button-flat">
                     Reset
