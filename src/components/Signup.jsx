@@ -51,7 +51,13 @@ export default function Signup() {
 
     //! use the (useActionState) hook after defining the (signupAction) because you need to pass it as a parameter
     //! you need to provide an initialState as the second parameter
-    useActionState(signupAction, { errors : null });
+    //!
+    //! Return array of 3 elements
+    //! 1st : FormState , which initially represents the initial form state
+    //! 2nd : an updated formAction, a new function that wraps the signupAction and listens to its invocation
+    //!       we can say it is our form action but with extra features and react is aware of it
+    //! 3rd : pending : true or false, depending on the form is submitted or not
+    const [formState, formAction, pending] = useActionState(signupAction, { errors : null });
 
     return (
         <form action={signupAction}>
